@@ -10,4 +10,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+output "zone_name" {
+  value = module.private_dns_zone.zone_name
+}
 
+output "id" {
+  value = module.private_dns_zone.id
+}
+
+output "resource_group_id" {
+  value = module.resource_group.id
+}

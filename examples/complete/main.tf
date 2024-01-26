@@ -10,4 +10,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+provider "random" {}
 
+resource "random_integer" "rand_int" {
+  max = 200000
+  min = 100000
+}
+
+module "resource_names" {
+  source = "git::https://github.com/nexient-llc/tf-module-resource_name.git?ref=1.0.0"
+
+  for_each = var.resource_names_map
+
+  logical_product_family  = var.product_family
+  logical_product_service = var.product_service
+  region                  = var.region
+  class_env               = var.environment
+  cloud_resource_type     = each.value.name
+  instance_env            = var.environment_number
+  maximum_length          = each.value.max_length
+}
+
+module "resource_group" {
+  source = "git::https://github.com/nexient-llc/tf-azurerm-module_primitive-resource_group.git?ref=0.2.0"
+
+  name     = module.resource_names["rg"].dns_compliant_minimal_random_suffix
+  location = var.region
+
+  tags = merge(var.tags, { resource_name = module.resource_names["rg"].standard })
+
+}
+
+module "private_dns_zone" {
+  source = "../.."
+
+  resource_group_name = module.resource_group.name
+  zone_name           = "example-${random_integer.rand_int.result}.com"
+
+  tags = var.tags
+
+  depends_on = [module.resource_group]
+}

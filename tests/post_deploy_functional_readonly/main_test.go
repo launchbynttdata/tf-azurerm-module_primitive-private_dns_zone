@@ -31,5 +31,5 @@ func TestSkeletonModule(t *testing.T) {
 		TestConfig: &testimpl.ThisTFModuleConfig{},
 	}
 	lib.RunSetupTestTeardown(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, ctx,
-		testimpl.TestComposableComplete)
+		testimpl.TestDnsZone)
 }

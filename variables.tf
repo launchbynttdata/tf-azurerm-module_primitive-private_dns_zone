@@ -10,17 +10,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-variable "length" {
-  type    = number
-  default = 24
+variable "zone_name" {
+  type = string
 }
 
-variable "number" {
-  type    = bool
-  default = true
+variable "resource_group_name" {
+  type = string
 }
 
-variable "special" {
-  type    = bool
-  default = false
+variable "soa_record" {
+  type = object({
+    email        = string
+    expire_time  = number
+    minimum_ttl  = number
+    refresh_time = number
+    retry_time   = number
+    ttl          = number
+    tags         = map(string)
+  })
+  default = null
+}
+
+variable "tags" {
+  description = "Map of tags to be associated with the resource"
+  type        = map(string)
+  default     = {}
 }
