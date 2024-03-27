@@ -27,9 +27,21 @@ const (
 
 func TestSkeletonModule(t *testing.T) {
 
-	ctx := types.TestContext{
-		TestConfig: &testimpl.ThisTFModuleConfig{},
-	}
-	lib.RunSetupTestTeardown(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, ctx,
-		testimpl.TestDnsZone)
+	ctx := types.CreateTestContextBuilder().
+		SetTestConfig(&testimpl.ThisTFModuleConfig{}).
+		SetTestConfigFolderName(testConfigsExamplesFolderDefault).
+		SetTestConfigFileName(infraTFVarFileNameDefault).
+		SetTestSpecificFlags(map[string]types.TestFlags{
+			"complete": {
+				"IS_TERRAFORM_IDEMPOTENT_APPLY": true,
+			},
+		}).
+		Build()
+	// ctx := types.TestContext{
+	// 	TestConfig: &testimpl.ThisTFModuleConfig{},
+	// }
+	// lib.RunSetupTestTeardown(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, ctx,
+	// 	testimpl.TestDnsZone)
+	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestDnsZone)
+
 }

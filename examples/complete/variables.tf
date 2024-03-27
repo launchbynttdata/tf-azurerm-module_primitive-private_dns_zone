@@ -62,6 +62,7 @@ variable "resource_names_map" {
   }
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "soa_record" {
   type = object({
     email        = string

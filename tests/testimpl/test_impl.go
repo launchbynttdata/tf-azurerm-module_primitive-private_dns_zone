@@ -15,8 +15,8 @@ func TestDnsZone(t *testing.T, ctx types.TestContext) {
 	})
 
 	t.Run("TestDnsZone", func(t *testing.T) {
-		dnsZoneId := terraform.Output(t, ctx.TerratestTerraformOptions, "id")
-		resourceGroupId := terraform.Output(t, ctx.TerratestTerraformOptions, "resource_group_id")
+		dnsZoneId := terraform.Output(t, ctx.TerratestTerraformOptions(), "id")
+		resourceGroupId := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_id")
 
 		assert.NotEmpty(t, dnsZoneId, "DNS Zone ID must not be empty")
 		assert.NotEmpty(t, resourceGroupId, "Resource Group ID must not be empty")
