@@ -26,10 +26,6 @@ const (
 )
 
 func TestSkeletonModule(t *testing.T) {
-
-	// ctx := types.TestContext{
-	// 	TestConfig: &testimpl.ThisTFModuleConfig{},
-	// }
 	ctx := types.CreateTestContextBuilder().
 		SetTestConfig(&testimpl.ThisTFModuleConfig{}).
 		SetTestConfigFolderName(testConfigsExamplesFolderDefault).
@@ -42,7 +38,4 @@ func TestSkeletonModule(t *testing.T) {
 		Build()
 
 	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestDnsZone)
-
-	// lib.RunSetupTestTeardown(t, testConfigsExamplesFolderDefault, infraTFVarFileNameDefault, *ctx,
-	// 	testimpl.TestDnsZone)
 }
