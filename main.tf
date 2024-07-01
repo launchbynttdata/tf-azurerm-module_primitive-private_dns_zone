@@ -22,10 +22,10 @@ resource "azurerm_private_dns_zone" "private_zone" {
       refresh_time = lookup(var.soa_record, "refresh_time", 3600)
       retry_time   = lookup(var.soa_record, "retry_time", 300)
       ttl          = lookup(var.soa_record, "ttl", 3600)
-      tags         = merge(var.tags, var.soa_record.tags)
+      tags         = local.soa_record_tags
     }
   }
 
-  tags = var.tags
+  tags = local.tags
 
 }
