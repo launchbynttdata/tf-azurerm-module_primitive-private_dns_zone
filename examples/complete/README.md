@@ -20,7 +20,7 @@
 ## Resources
 
 | Name | Type |
-|------|------|
+|------|---------|
 | [random_integer.rand_int](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
 
 ## Inputs
@@ -39,7 +39,7 @@
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+|------|---------|
 | <a name="output_id"></a> [id](#output\_id) | n/a |
 | <a name="output_resource_group_id"></a> [resource\_group\_id](#output\_resource\_group\_id) | n/a |
 | <a name="output_zone_name"></a> [zone\_name](#output\_zone\_name) | n/a |
