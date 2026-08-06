@@ -12,10 +12,10 @@
 
 locals {
   default_tags = {
-    provisioner = "terraform"
+    provisioner   = "terraform"
     resource_name = var.zone_name
   }
 
   soa_record_tags = merge(local.default_tags, var.soa_record == null ? {} : var.soa_record.tags)
-  tags = merge(local.default_tags, var.tags)
+  tags            = merge(local.default_tags, var.tags)
 }
