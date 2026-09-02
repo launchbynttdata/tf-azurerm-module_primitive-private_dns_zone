@@ -1,6 +1,7 @@
 package common
 
 import (
+	"context"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -15,8 +16,8 @@ func TestComposableDnsZone(t *testing.T, ctx types.TestContext) {
 	})
 
 	t.Run("TestDnsZone", func(t *testing.T) {
-		dnsZoneId := terraform.Output(t, ctx.TerratestTerraformOptions(), "id")
-		resourceGroupId := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_id")
+		dnsZoneId := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "id")
+		resourceGroupId := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "resource_group_id")
 
 		assert.NotEmpty(t, dnsZoneId, "DNS Zone ID must not be empty")
 		assert.NotEmpty(t, resourceGroupId, "Resource Group ID must not be empty")
